@@ -37,7 +37,7 @@ body {
 
 .text-logo {
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 1024px;
 }
 
 .date-logo {
@@ -47,17 +47,19 @@ body {
 }
 
 .leaderboard-banner {
+    margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 40px;
     display: flex;
     gap: 5px;
     justify-content: center;
     align-items: center;
+    max-width: 1000px;
 }
 
 .leaderboard-logo {
-    max-width: 600px;
     display: inline;
+    max-width: 600px;
 }
 
 #leaderboard {
@@ -68,6 +70,7 @@ body {
     margin: 0 auto;
     justify-content: center;
     padding-bottom: 40px;
+    padding-left: 0px;
 }
 
 #leaderboard li {
@@ -165,4 +168,77 @@ footer div {
     z-index: 5;
     width: 200px;
     height: 200px;
+}
+
+@media screen and (max-width: 1024px) {
+    .text-logo {
+        max-width: 100%;
+    }
+
+    .leaderboard-banner {
+        max-width: 100%;
+    }
+
+    .leaderboard-logo {
+        max-width: 100%;
+    }
+
+    .leaderboard-banner h1 {
+        display: none;
+    }
+
+    .leaderboard-banner h2 {
+        display: none;
+    }
+
+    .leaderboard-banner h3 {
+        display: none;
+    }
+
+    .leaderboard-banner h4 {
+        display: none;
+    }
+
+    .leaderboard-banner h5 {
+        display: none;
+    }
+
+    .leaderboard-banner h6 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .star-logo {
+        display: none;
+    }
+
+    footer img {
+        display: none;
+    }
+
+    footer div {
+        width: 100%;
+    }
+
+    #leaderboard {
+        row-gap: 40px;
+        column-gap: 0px;
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .logo {
+        width: 100%;
+        height: auto;
+    }
+
+    .date-logo {
+        max-width: 100%;
+    }
+
+    #leaderboard li {
+        width: 100%;
+    }
 }
