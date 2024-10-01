@@ -1,0 +1,168 @@
+body {
+    padding: 0;
+    background-image: url("gfx/cinnamorollbg.jpg");
+}
+
+.cinnamoroll-container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.65);
+}
+
+.navigation {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.star-logo {
+    width: 100px;
+    height: 100px;
+}
+
+.content {
+    color: white;
+    text-shadow: 1px 1px 2px #d1ebf6;
+    text-align: center;
+    background-color: rgba(76, 180, 240, 0.75);
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    width: 400px;
+    height: 400px;
+}
+
+.text-logo {
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.date-logo {
+    margin: 0 auto;
+    max-width: 400px;
+    margin-bottom: 40px;
+}
+
+.leaderboard-banner {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.leaderboard-logo {
+    max-width: 600px;
+    display: inline;
+}
+
+#leaderboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 80%;
+    margin: 0 auto;
+    justify-content: center;
+    padding-bottom: 40px;
+}
+
+#leaderboard li {
+    padding: 40px 25px 40px 25px;
+    text-decoration: none;
+    width: 400px;
+    height: 600px;
+    overflow: scroll;
+    display: inline-block;
+    background-color: rgba(209, 235, 246, 0.4);
+    border-radius: 20px;
+    flex-grow: 0;
+}
+
+#leaderboard li h2 {
+    margin-bottom: 10px;
+}
+
+.accordion-item span {
+    color: #4cb4f0;
+}
+
+.accordion-header button {
+    display: flex;
+}
+
+.rank {
+    flex-grow: 0;
+    margin-right: 15px;
+}
+
+.player {
+    flex-grow: 1;
+}
+
+.avg {
+    flex-grow: 0;
+    margin-right: 15px;
+}
+
+.accordion-body {
+    text-align: left;
+}
+
+.accordion-body div {
+    padding-left: 20px;
+    display: flex;
+}
+
+.song-name {
+    margin-right: 10px;
+    flex-grow: 1;
+}
+
+.difficulty {
+    flex-grow: 0;
+}
+
+.difficulty-icon {
+    max-width: 24px;
+    max-height: 20px;
+    line-height: var(--bs-body-line-height);
+    vertical-align: text-top;
+    margin-left: 5px;
+}
+
+.song-score {
+    margin-left: 10px;
+    flex-grow: 0;
+    width: 50px;
+    text-align: right;
+}
+
+footer {
+    color: #4cb4f0;
+    background-color: white;
+    text-align: center;
+    padding: 40px;
+}
+
+footer div {
+    width: 400px;
+    margin: 0 auto;
+}
+
+.cinnamoroll-footer {
+    float: right;
+    width: 200px;
+}
+
+.cinnamoroll-float {
+    position: fixed;
+    bottom: 0px;
+    right: 10px;
+    z-index: 5;
+    width: 200px;
+    height: 200px;
+}
