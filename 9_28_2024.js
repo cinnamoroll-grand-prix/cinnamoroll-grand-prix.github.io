@@ -673,7 +673,7 @@ const courses = [
                 ]
             },
             {
-                player: "Error",
+                player: "Anya",
                 scores: [
                     {
                         difficulty: 20,
