@@ -136,7 +136,7 @@ footer div {
 
 .cinnamoroll-float {
     position: fixed;
-    bottom: 0px;
+    bottom: 150px;
     right: 10px;
     z-index: 5;
     width: 200px;

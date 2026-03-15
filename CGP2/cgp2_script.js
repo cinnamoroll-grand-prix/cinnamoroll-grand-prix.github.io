@@ -20,14 +20,6 @@ const getSortedPlayersByGame = (gameName) => {
 const smx_overall = document.getElementById("smx-overall");
 const pump_overall = document.getElementById("pump-overall");
 
-// Temporary pump difficulty generator (just returns the number)
-const generatePumpDifficulty = (difficulty) => {
-    const span = document.createElement('span');
-    span.className = 'pump-difficulty';
-    span.textContent = difficulty;
-    return span;
-}
-
 const populateLeaderboards = () => {
     // Get sorted players for SMX
     const smxPlayers = getSortedPlayersByGame("smx");
@@ -49,7 +41,8 @@ const populateLeaderboards = () => {
                 playerData.smx.difficulty,
                 smx_songs,
                 generateSmxDifficulty,
-                smx_songs_data
+                smx_songs_data,
+                'smx'
             );
             smxAccordion.appendChild(accordion);
         }
@@ -77,7 +70,8 @@ const populateLeaderboards = () => {
                 playerData.pump.difficulty,
                 pump_songs,
                 generatePumpDifficulty,
-                pump_songs_data
+                pump_songs_data,
+                'pump'
             );
             pumpAccordion.appendChild(accordion);
         }
@@ -165,11 +159,14 @@ const renderDetailedLeaderboard = (gameName) => {
 // Initialize carousel
 const carouselElement = document.getElementById('carousel');
 const carouselImages = [
-    '../gfx/cgp2/cgp2overallgrouppic.jpg',
-    '../gfx/cgp2/cgp2smxgrouppic.jpg',
-    '../gfx/cgp2/cgp2pumpgrouppic.jpg'
+    'gfx/cgp2/cgp2overallgrouppic.jpg',
+    'gfx/cgp2/cgp2smxgrouppic.jpg',
+    'gfx/cgp2/cgp2pumpgrouppic.jpg'
 ];
 generateBootstrapCarousel(carouselElement, carouselImages);
+
+// Initialize scroll progress
+initializeCinnamorollScrollProgress();
 
 populateLeaderboards();
 initializeTabs();

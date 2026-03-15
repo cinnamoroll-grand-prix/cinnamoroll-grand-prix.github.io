@@ -96,6 +96,47 @@ const generateBootstrapCarousel = (element, imageSources) => {
     element.appendChild(carousel);
 }
 
+const generatePumpDifficulty = (difficulty) => {
+    // Extract the letter and number from the difficulty string (e.g., "S15" -> "S" and "15")
+    const letter = difficulty.charAt(0).toLowerCase();
+    const number = difficulty.slice(1);
+
+    const span = document.createElement('span');
+    span.className = 'pump-difficulty';
+    span.textContent = number;
+
+    // Style based on the letter
+    if (letter === 's') {
+        span.style.cssText = `
+            background-color: #ff4444;
+            border: 2px solid #cc0000;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        `;
+    } else if (letter === 'd') {
+        span.style.cssText = `
+            background-color: #44ff44;
+            border: 2px solid #008800;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        `;
+    }
+
+    return span;
+}
+
 const generateSmxDifficulty = (difficultyString) => {
     // Extract the letter and number from the difficulty string (e.g., "W20" -> "W" and "20")
     const letter = difficultyString.charAt(0).toLowerCase();
@@ -130,7 +171,7 @@ const generateSmxDifficulty = (difficultyString) => {
 
     // Add the image
     const img = document.createElement('img');
-    img.src = `../gfx/common/smx/${imageName}.webp`;
+    img.src = `gfx/common/smx/${imageName}.webp`;
     img.alt = imageName;
     img.className = 'difficulty-icon';
 
@@ -146,6 +187,7 @@ const generatePlayerScoreData = (scores, difficulties, songNames, difficultyGene
     for (let i = 0; i < scores.length; i++) {
         const row = document.createElement('div');
         row.className = 'player-score-row';
+        row.style.alignItems = 'center';
 
         // Set background image if jacket data is available
         if (jacketData && jacketData[songNames[i]] && jacketData[songNames[i]].jacketSrc) {
@@ -178,7 +220,7 @@ const generatePlayerScoreData = (scores, difficulties, songNames, difficultyGene
     return rows;
 }
 
-const generatePlayerAccordion = (playerName, scores, difficulties, songNames, difficultyGenerator, jacketData) => {
+const generatePlayerAccordion = (playerName, scores, difficulties, songNames, difficultyGenerator, jacketData, gameType) => {
     // Calculate average score
     const averageScore = avg(scores);
 
@@ -187,7 +229,7 @@ const generatePlayerAccordion = (playerName, scores, difficulties, songNames, di
     accordionItem.className = 'accordion-item';
 
     // Create unique ID for this accordion
-    const accordionId = `accordion-${playerName.replace(/\s+/g, '-').toLowerCase()}`;
+    const accordionId = `accordion-${gameType}-${playerName.replace(/\s+/g, '-').toLowerCase()}`;
 
     // Create accordion header
     const accordionHeader = document.createElement('h2');
@@ -489,4 +531,76 @@ const generateScoreTable = (initialPlayers, songNames, gameName, difficultyGener
     tableWrapper.appendChild(table);
 
     return tableWrapper;
+}
+
+const initializeCinnamorollScrollProgress = () => {
+    // Create scroll progress container
+    const progressContainer = document.createElement('div');
+    progressContainer.className = 'cinnamoroll-scroll-progress';
+    progressContainer.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        height: 150px;
+        z-index: 1000;
+        pointer-events: none;
+    `;
+
+    // Create cinnamoroll character
+    const cinnamoroll = document.createElement('img');
+    cinnamoroll.className = 'cinnamoroll-character';
+    cinnamoroll.src = 'gfx/common/cinnamorollwalk.png';
+    cinnamoroll.style.cssText = `
+        position: absolute;
+        left: 30px;
+        top: 0;
+        width: 150px;
+        height: 150px;
+        transition: left 0.1s ease-out;
+    `;
+
+    // Create goal flag
+    const goalFlag = document.createElement('img');
+    goalFlag.className = 'goal-flag';
+    goalFlag.src = 'gfx/common/goalflag.png';
+    goalFlag.style.cssText = `
+        position: absolute;
+        right: 30px;
+        top: 0;
+        width: 150px;
+        height: 150px;
+    `;
+
+    progressContainer.appendChild(cinnamoroll);
+    progressContainer.appendChild(goalFlag);
+    document.body.appendChild(progressContainer);
+
+    // Scroll progress handler
+    const handleScroll = () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = Math.min(scrollTop / docHeight, 1);
+
+        // Calculate position between start (30px) and goal flag position
+        const containerWidth = window.innerWidth;
+        const startPosition = 30; // 30px from left
+        const endPosition = containerWidth - 30 - 150 - 150; // 30px from right - flag width - cinnamoroll width
+        const currentPosition = startPosition + (scrollPercent * (endPosition - startPosition));
+
+        cinnamoroll.style.left = currentPosition + 'px';
+
+        // Switch to happy cinnamoroll when reached the goal
+        if (scrollPercent >= 0.98) { // Switch very close to the end
+            cinnamoroll.src = 'gfx/common/happycinnamoroll.png';
+        } else {
+            cinnamoroll.src = 'gfx/common/cinnamorollwalk.png';
+        }
+    };
+
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
+
+    // Initial call to set position
+    handleScroll();
 }

@@ -25,6 +25,15 @@
     margin-bottom: 10px;
 }
 
+.accordion-body div {
+    padding: 0;
+}
+
+.accordion-body div span {
+    text-shadow: none;
+    font-weight: normal;
+}
+
 @media screen and (max-width: 1024px) {
     .leaderboard-banner {
         max-width: 100%;

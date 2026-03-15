@@ -86,11 +86,11 @@ for (const course of courses) {
 
         const difficultyIcon = document.createElement("img");
         if (data.isDouble) {
-          difficultyIcon.src = "../gfx/common/smx/full.webp";
+          difficultyIcon.src = "gfx/common/smx/full.webp";
         } else if (score.difficulty < 19) {
-          difficultyIcon.src = "../gfx/common/smx/hard.webp";
+          difficultyIcon.src = "gfx/common/smx/hard.webp";
         } else if (score.difficulty >= 19) {
-          difficultyIcon.src = "../gfx/common/smx/wild.webp";
+          difficultyIcon.src = "gfx/common/smx/wild.webp";
         }
         difficultyIcon.className = "difficulty-icon";
         difficulty.appendChild(difficultyIcon);
